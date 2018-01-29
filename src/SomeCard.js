@@ -52,7 +52,7 @@ function MediaControlCard(props) {
         <CardMedia
           className={classes.cover}
           // image="/static/images/cards/live-from-space.jpg"
-          image="http://lorempixel.com/400/400"
+          // image="http://lorempixel.com/400/400"
           title="Live from space album cover"
         />
       </Card>
