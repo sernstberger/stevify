@@ -24,17 +24,6 @@ class App extends Component {
           I am a Front-End Developer with 10 years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.
 
           Technologies
-          HTML5 / CSS3
-          Javascript / jQuery
-          Bootstrap
-          React
-          Git
-          Ruby on Rails
-          PHP
-          WordPress
-          Photoshop
-          Sketch
-          After Effects
           <ChipsArray />
 
           Selected Work
