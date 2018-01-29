@@ -9,7 +9,7 @@ import Paper from 'material-ui/Paper';
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     flexWrap: 'wrap',
     padding: theme.spacing.unit / 2,
   },
