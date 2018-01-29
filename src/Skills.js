@@ -22,14 +22,12 @@ class ChipsArray extends React.Component {
   state = {
     chipData: [
       { key: 0, label: 'HTML5' },
-      { key: 1, label: 'jQuery' },
-      { key: 2, label: 'CSS3' },
-      { key: 3, label: 'React' },
-      { key: 4, label: 'Javascript' },
-      // HTML5 / CSS3
-      // Javascript / jQuery
-      // Bootstrap
-      // React
+      { key: 1, label: 'CSS3' },
+      { key: 2, label: 'Javascript' },
+      { key: 3, label: 'jQuery' },
+      { key: 4, label: 'React' },
+      { key: 5, label: 'Bootstrap' },
+
       // Git
       // Ruby on Rails
       // PHP
