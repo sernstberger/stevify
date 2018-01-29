@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
-// import TagFacesIcon from 'material-ui-icons/TagFaces';
 
 const styles = theme => ({
   root: {
@@ -27,27 +26,14 @@ class ChipsArray extends React.Component {
       { key: 3, label: 'jQuery' },
       { key: 4, label: 'React' },
       { key: 5, label: 'Bootstrap' },
-
-      // Git
-      // Ruby on Rails
-      // PHP
-      // WordPress
-      // Photoshop
-      // Sketch
-      // After Effects
+      { key: 6, label: 'PHP' },
+      { key: 7, label: 'WordPress' },
+      { key: 8, label: 'Photoshop' },
+      { key: 9, label: 'Git' },
+      { key: 10, label: 'Ruby on Rails' },
+      { key: 11, label: 'Sketch' },
+      { key: 12, label: 'After Effects' },
     ],
-  };
-
-  handleDelete = data => () => {
-    if (data.label === 'React') {
-      alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
-      return;
-    }
-
-    const chipData = [...this.state.chipData];
-    const chipToDelete = chipData.indexOf(data);
-    chipData.splice(chipToDelete, 1);
-    this.setState({ chipData });
   };
 
   render() {
@@ -58,20 +44,19 @@ class ChipsArray extends React.Component {
         {this.state.chipData.map(data => {
           let avatar = null;
 
-          // if (data.label === 'React') {
-          //   avatar = (
-          //     <Avatar>
-          //       <TagFacesIcon className={classes.svgIcon} />
-          //     </Avatar>
-          //   );
-          // }
+
+          // avatar = (
+          //   <Avatar>
+          //     SE
+          //   </Avatar>
+          // );
+
 
           return (
             <Chip
               key={data.key}
               avatar={avatar}
               label={data.label}
-              onDelete={this.handleDelete(data)}
               className={classes.chip}
             />
           );

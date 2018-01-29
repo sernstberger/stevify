@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import { withStyles } from 'material-ui/styles';
 import './App.css';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee';
+// import { faCoffee } from '@fortawesome/fontawesome-pro-light/faCoffee';
+
+import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 
 import ControlledExpansionPanels from './ExpansionPanels';
 import ChipsArray from './Skills';
@@ -9,14 +16,22 @@ function createData(key, label, description) {
   return { key, label, description };
 }
 
-class App extends Component {
+const styles = theme => ({
+  root: {
+    padding: 60,
+  },
+});
+
+class App extends React.Component {
   render() {
+
+    const { classes } = this.props;
 
     const foos = [
       createData(
         1,
         "DeveloperTown",
-        "At DeveloperTown, I work as a full-stack developer, though my focus is on front-end. My projects usually consist of Ruby on Rails/PostgreSQL/HAML/SCSS/CoffeeScript/React."
+        "I built out the website for DeveloperTown using WordPress.",
       ),
       createData(
         2,
@@ -43,34 +58,41 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Steve Ernstberger</h1>
-          Front-End Developer
+          <Typography type="display3" className="text-white">Steve Ernstberger</Typography>
+          <Typography type="display2" className="text-white">Front-End Developer</Typography>
 
-          317.413.2489
-          steve32285@gmail.com
+          <Typography type="headline" className="text-white">317.413.2489 ⋅ steve32285@gmail.com</Typography>
         </header>
-        <p className="App-intro">
-          <h2>Expertise</h2>
-          I am a Front-End Developer with 10 years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.
+        <div className={classes.root}>
+          <Grid container spacing={30}>
+            <Grid item xs={12}>
 
-          <h2>Technologies</h2>
-          <ChipsArray />
+              <h2>Expertise</h2>
+              <p>I am a Front-End Developer with 10 years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.</p>
 
-          <h2>Selected Work</h2>
-          {foos.map(( chip ) => (
-            <MediaControlCard
-              label={chip.label}
-              description={chip.description}
-            />
-          ))}
+              <h2>Technologies</h2>
+              <FontAwesomeIcon icon="faCoffee" />
+              {/* <FontAwesomeIcon icon={["fal","faCoffee"]}/> */}
 
-          <h2>Previous Experience</h2>
-          <ControlledExpansionPanels />
+              <ChipsArray />
 
-        </p>
+              <h2>Selected Work</h2>
+              {foos.map(( chip ) => (
+                <MediaControlCard
+                  label={chip.label}
+                  description={chip.description}
+                />
+              ))}
+
+              <h2>Previous Experience</h2>
+              <ControlledExpansionPanels />
+            </Grid>
+          </Grid>
+        </div>
+
       </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
