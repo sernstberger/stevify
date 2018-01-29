@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import ControlledExpansionPanels from './ExpansionPanels';
@@ -10,16 +9,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          Steve Ernstberger
+          <h1 className="App-title">Steve Ernstberger</h1>
           Front-End Developer
 
           317.413.2489
           steve32285@gmail.com
-
+        </header>
+        <p className="App-intro">
           Expertise
           I am a Front-End Developer with 10 years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.
 
