@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+
 import Card, { CardContent, CardMedia } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
-// import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
-// import PlayArrowIcon from 'material-ui-icons/PlayArrow';
-// import SkipNextIcon from 'material-ui-icons/SkipNext';
+import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
 
 const styles = theme => ({
   card: {
@@ -23,30 +23,23 @@ const styles = theme => ({
     width: 151,
     height: 151,
   },
-  // controls: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   paddingLeft: theme.spacing.unit,
-  //   paddingBottom: theme.spacing.unit,
-  // },
-  // playIcon: {
-  //   height: 38,
-  //   width: 38,
-  // },
 });
 
 function MediaControlCard(props) {
   const { classes, theme } = props;
 
   return (
-    <div>
-      <Card className={classes.card}>
+    <Grid item xs={12} sm={6} md={4}>
+      <Card className={classes.card} style={{height: "100%"}}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography type="headline">{props.label}</Typography>
             <Typography type="subheading" color="textSecondary">
               {props.description}
             </Typography>
+            { props.link && 
+              <Button raised color="primary">Visit {props.link}</Button>
+            }
           </CardContent>
         </div>
         <CardMedia
@@ -56,7 +49,7 @@ function MediaControlCard(props) {
           title="Live from space album cover"
         />
       </Card>
-    </div>
+    </Grid>
   );
 }
 

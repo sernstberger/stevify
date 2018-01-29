@@ -32,7 +32,8 @@ class ChipsArray extends React.Component {
       { key: 9, label: 'Git' },
       { key: 10, label: 'Ruby on Rails' },
       { key: 11, label: 'Sketch' },
-      { key: 12, label: 'After Effects' },
+      { key: 12, label: 'Premiere Pro' },
+      { key: 13, label: 'After Effects' },
     ],
   };
 
