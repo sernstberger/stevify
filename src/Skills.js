@@ -45,11 +45,11 @@ class ChipsArray extends React.Component {
           let avatar = null;
 
 
-          // avatar = (
-          //   <Avatar>
-          //     SE
-          //   </Avatar>
-          // );
+          avatar = (
+            <Avatar>
+              { this.props.avatar }
+            </Avatar>
+          );
 
 
           return (

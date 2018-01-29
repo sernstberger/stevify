@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import './App.css';
+
+import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee';
-// import { faCoffee } from '@fortawesome/fontawesome-pro-light/faCoffee';
+import faAsterisk from '@fortawesome/fontawesome-pro-light/faAsterisk';
 
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
@@ -15,6 +16,8 @@ import MediaControlCard from './SomeCard';
 function createData(key, label, description) {
   return { key, label, description };
 }
+
+fontawesome.library.add(faAsterisk);
 
 const styles = theme => ({
   root: {
@@ -71,10 +74,10 @@ class App extends React.Component {
               <p>I am a Front-End Developer with 10 years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.</p>
 
               <h2>Technologies</h2>
-              <FontAwesomeIcon icon="faCoffee" />
-              {/* <FontAwesomeIcon icon={["fal","faCoffee"]}/> */}
 
-              <ChipsArray />
+              <ChipsArray
+                avatar={ <FontAwesomeIcon icon={["fal","asterisk"]}/> }
+              />
 
               <h2>Selected Work</h2>
               {foos.map(( chip ) => (
