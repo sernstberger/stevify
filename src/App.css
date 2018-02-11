@@ -8,8 +8,10 @@
 } */
 
 .App-header {
-  background-color: #222;
-  /* height: 150px; */
+  /* background-color: #222; */
+  min-height: 450px;
+  background: url('./images/bg.jpg') center center no-repeat;
+  background-size: cover;
   padding: 20px;
   color: white;
 }

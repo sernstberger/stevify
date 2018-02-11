@@ -1,72 +1,180 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import './App.css';
-
-import fontawesome from '@fortawesome/fontawesome';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faAsterisk from '@fortawesome/fontawesome-pro-light/faAsterisk';
-
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
 import Grid from 'material-ui/Grid';
+import Toolbar from 'material-ui/Toolbar';
+import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import Hidden from 'material-ui/Hidden';
+import Divider from 'material-ui/Divider';
+// import MenuIcon from 'material-ui-icons/Menu';
+// import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
-import ControlledExpansionPanels from './ExpansionPanels';
-import ChipsArray from './Skills';
-import MediaControlCard from './SomeCard';
+import Player from './components/Player';
+import TrackList from './components/TrackList';
+import AlbumList from './components/AlbumList';
 
-import { projects } from './store';
+import axios from 'axios';
 
-fontawesome.library.add(faAsterisk);
+const drawerWidth = 240;
 
 const styles = theme => ({
+
   root: {
-    padding: 60,
+    color: "#fff",
+    display: "flex",
+    height: "100%",
+    overflow: "hidden",
+    margin: 0,
+    position: "relative",
+  },
+  
+  sidebar: {
+    backgroundColor: "rgba(0,0,0,.1)",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    flexShrink: 0,
+    position: "relative",
+    width: 240,
+    zIndex: 1,
+  },
+  mainContent: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    // backgroundColor: "rgba(0,0,0,.85)",
+    zIndex: 2,
+    width: "100%",
+  },
+  scrollableContent: {
+    flexGrow: 1,
+    overflowY: "auto",
+    padding: 20,
+  },
+  
+  bg: {
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    backgroundSize: "cover",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    filter: "brightness(50%) blur(80px)",
+    transform: "scale(1.25)",
+    zIndex: 1,
+  },
+
+  content: {
+    // backgroundColor: theme.palette.background.default,
+    backgroundColor: "rgba(0,0,0,.65)",
+    width: '100%',
+    padding: theme.spacing.unit * 3,
+    height: "100%",
+    // height: 'calc(100% - 56px)',
+    // marginTop: 56,
+    // [theme.breakpoints.up('sm')]: {
+    //   height: 'calc(100% - 64px)',
+    //   marginTop: 64,
+    // },
   },
 });
 
-class App extends React.Component {
-  render() {
+const randNum = Math.floor(Math.random() * 5) + 0
 
-    const { classes } = this.props;
+class ResponsiveDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      top50Tracks: [],
+    }
+  }
+  // state = {
+  //   mobileOpen: false,
+  // };
+  componentWillMount() {
+    const token = "BQDvv-3occn01gm4oB5auzDOLgBYxlLrCyH4gqndTHRw-4kdThq5paYZiDxaNRvRGrzJA6K67cZP8stlWHQebvAn1laCuBmLdLKyGHbA7H9Jl2JJR9XgzRSFaQLTTv2S-ANHB5VHvG_rlzI";
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+    const url = 'https://api.spotify.com/v1/browse/new-releases?limit=6'
+    axios.get(url)
+      .then(response => {
+        // console.log("albums: ", response.data.albums);
+        
+        const posts = response.data.albums.items.map(obj => obj);
+        this.setState({ 
+          posts: posts,
+          bgImage: posts[randNum].images[2].url,
+        });
+        console.log("work", this.state.posts[0].images[0].url);
+      });
+
+
+
+    const urlTop = "https://api.spotify.com/v1/users/spotifycharts/playlists/37i9dQZEVXbLRQDuF5jeBp"
+    axios.get(urlTop)
+      .then(response => {
+        // console.log("bacon", response.data.tracks);
+        
+        const top50Tracks = response.data.tracks.items.map(obj => obj);
+        this.setState({ top50Tracks: top50Tracks });
+      });
+  }
+
+  // handleDrawerToggle = () => {
+  //   this.setState({ mobileOpen: !this.state.mobileOpen });
+  // };
+
+  render() {
+    const { classes, theme } = this.props;
+
+    const drawer = (
+      <div>
+        <div className={classes.drawerHeader} />
+        <Divider />
+        <List>ajlkfajsf</List>
+        <Divider />
+        <List>lakdjflajfasdl</List>
+      </div>
+    );
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <Typography type="display3" className="text-white">Steve Ernstberger</Typography>
-          <Typography type="display2" className="text-white">Front-End Developer</Typography>
-          <Typography type="headline" className="text-white">317.413.2489 ⋅ steve32285@gmail.com</Typography>
-        </header>
-        <div className={classes.root}>
-          <Grid container spacing={30}>
-            <Grid item xs={12}>
-
-              <Typography type="headline">Expertise</Typography>
-              <Typography type="subheading">I am a Front-End Developer with 10+ years of professional experience. I have worked with large enterprise clients like Interactive Intelligence and ExactTarget, start-ups with one employee, and everything in between. I enjoy solving problems and creating beautiful interfaces that are easy to use on any device.</Typography>
-
-              <Typography type="headline">Technologies</Typography>
-              <ChipsArray
-                avatar={ <FontAwesomeIcon icon={["fal","asterisk"]}/> }
-              />
-
-              <h2>Selected Work</h2>
-              <Grid container alignItems="stretch">
-                {projects.map(( project ) => (
-                  <MediaControlCard
-                    label={project.label}
-                    description={project.description}
-                    link={project.link}
-                  />
-                ))}
-              </Grid>
-
-              <h2>Experience</h2>
-              <ControlledExpansionPanels />
-            </Grid>
-          </Grid>
+      <div className={classes.root}>
+        <div className={classes.bg} style={{backgroundImage: `url(${this.state.bgImage})`}}></div>
+        
+        <div className={classes.sidebar}>
+          <div className={classes.scrollableContent}>
+            {drawer}
+          </div>
         </div>
-
+        <div className={classes.mainContent}>
+          <div className={classes.scrollableContent}>
+            <Typography variant="display4">Title goes here</Typography>
+            {/* <img src="https://i.scdn.co/image/49a45aac2c93bab9575de13cee2d71b7eb164cab" style={{maxWidth: "100%"}}/> */}
+            <AlbumList albums={this.state.posts} />
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <TrackList tracks={this.state.top50Tracks} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TrackList tracks={this.state.top50Tracks} />
+              </Grid>
+            </Grid>
+          </div>
+        </div>
+        
       </div>
     );
   }
 }
 
-export default withStyles(styles)(App);
+ResponsiveDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
