@@ -153,7 +153,7 @@ class ResponsiveDrawer extends React.Component {
         </div>
         <div className={classes.mainContent}>
           <div className={classes.scrollableContent}>
-            <Typography variant="display4">Title goes here</Typography>
+            <Typography variant="display4">Title here</Typography>
             {/* <img src="https://i.scdn.co/image/49a45aac2c93bab9575de13cee2d71b7eb164cab" style={{maxWidth: "100%"}}/> */}
             <AlbumList albums={this.state.posts} />
             <Grid container>
